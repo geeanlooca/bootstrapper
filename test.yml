@@ -15,6 +15,11 @@
         - tree
         - vim
         - python-pip
+        - cmake
+        - make
+        - clang
+        - gcc
+        - g++
 
     - name: Install Desktop Applications
       become: true
@@ -63,4 +68,7 @@
 
     - name: Install Vim plugins
       shell: vim +PluginInstall +qall
+
+    - name: Configure YouCompleteMe
+      shell: python ~/.vim/bundle/YouCompleteMe/install.py
 
