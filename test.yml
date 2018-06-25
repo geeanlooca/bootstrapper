@@ -1,7 +1,7 @@
 ---
 - name: Bootstrap
   connection: local
-  hosts: margaret
+  hosts: local
   tasks:
     - name: Install necessary packages
       become: true
@@ -28,6 +28,7 @@
         state: latest
       with_items:
         - telegram-desktop
+        - lxappearance
         - thunderbird
         - thunar
         - qutebrowser
