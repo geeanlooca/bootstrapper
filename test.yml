@@ -1,0 +1,66 @@
+---
+- name: Bootstrap
+  connection: local
+  hosts: margaret
+  tasks:
+    - name: Install necessary packages
+      become: true
+      package:
+        name: '{{ item }}'
+        state: latest
+      with_items:
+        - git
+        - wget
+        - curl
+        - tree
+        - vim
+        - python-pip
+
+    - name: Install Desktop Applications
+      become: true
+      package:
+        name: '{{ item }}'
+        state: latest
+      with_items:
+        - telegram-desktop
+        - thunderbird
+        - thunar
+        - qutebrowser
+        - chromium
+        - mpv
+        - vlc
+        - gscan2pdf
+        - simple-scan
+        - i3blocks
+
+    - name: Ensure Vim is installed
+      package: name=vim state=latest
+      tags: vim
+
+    - name: Install Vundle Plugin Manager for Vim
+      git:
+        repo: 'https://github.com/VundleVim/Vundle.vim'
+        dest: ~/.vim/bundle/Vundle.vim
+        force: yes
+      tags: vim
+
+
+    - name: Retrieve dotfiles
+      git:
+        repo: 'https://github.com/geeanlooca/dotfiles'
+        dest: ~/dotfiles
+        force: yes
+      tags: dotfiles
+
+    - name: Install dotfiles
+      file:
+        src: "~/dotfiles/{{ item.path }}"
+        dest: "{{ item.dest }}"
+        state: link
+      with_items:
+        - { path: 'vimrc', dest: '~/.vimrc' }
+      tags: dotfiles
+
+    - name: Install Vim plugins
+      shell: vim +PluginInstall +qall
+
