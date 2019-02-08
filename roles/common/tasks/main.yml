@@ -35,6 +35,7 @@
       repo: https://github.com/geeanlooca/dotfiles
       dest: /home/gianluca/dotfiles
       update: yes
+      force: yes
 
 - name: install themes
   become: true
