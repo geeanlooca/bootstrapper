@@ -25,6 +25,7 @@
           - telegram-desktop
           - emacs
           - code
+      state: present
 
 - name: install config files
   git:
@@ -32,3 +33,10 @@
       dest: /home/gianluca/dotfiles
       update: yes
 
+- name: install themes
+  become: true
+  pacman:
+      name: 
+        - numix-gtk-theme
+        - papirus-icon-theme
+        - adapta-kde
