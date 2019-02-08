@@ -16,4 +16,12 @@
     state: present
 
 
-
+- name: install desktop programs
+  become: true
+  pacman:
+      name:
+          - thunderbird
+          - firefox
+          - telegram-desktop
+          - emacs
+          - code
