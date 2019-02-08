@@ -40,3 +40,15 @@
         - numix-gtk-theme
         - papirus-icon-theme
         - adapta-kde
+
+
+- name: install fonts
+  become: true
+  pacman:
+      name:
+          - otf-fira-code
+          - otf-fira-mono
+          - otf-fira-sans
+          - ttf-fira-code
+          - ttf-fira-mono
+          - ttf-fira-sans
