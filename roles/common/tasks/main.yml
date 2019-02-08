@@ -25,3 +25,11 @@
           - telegram-desktop
           - emacs
           - code
+
+- name: install config files
+  git:
+      repo: ssh://git@github.com/geeanlooca/dotfiles.fit
+      dest: /home/gianluca/dotfiles
+      update: yes
+      accept_hostkey: yes
+
