@@ -27,6 +27,7 @@
           - telegram-desktop
           - emacs
           - code
+          - nextcloud-client
       state: present
 
 - name: install config files
