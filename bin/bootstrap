@@ -7,6 +7,10 @@ echo 'Installing make and ansible...'
 sudo pacman -S make ansible --noconfirm
 
 echo 'Installing AUR module for ansible'
-git clone https://github.com/kewlfft/ansible-aur.git ~/.ansible/plugins/modules/aur
+
+TARGET="~/.ansible/plugins/modules/aur"
+if [ ! -d "$TARGET" ] ; then
+    git clone https://github.com/kewlfft/ansible-aur.git $TARGET
+fi
 
 echo $USER
