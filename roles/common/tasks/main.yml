@@ -4,6 +4,7 @@
   become: true
   pacman:
     name:
+        - yay
         - vim
         - git
         - wget
@@ -40,6 +41,7 @@
         - numix-gtk-theme
         - papirus-icon-theme
         - adapta-kde
+        - paper-icon-theme-git
 
 
 - name: install fonts
