@@ -56,3 +56,8 @@
           - ttf-fira-code
           - ttf-fira-mono
           - ttf-fira-sans
+
+- name: Dropbox
+  aur:
+      name:
+          - dropbox
