@@ -2,17 +2,18 @@
 
 - name: install base packages
   become: true
-  pacman: name={{ item }} state=present
-  with_items:
-      - vim
-      - git
-      - wget
-      - curl
-      - tree 
-      - python-pip
-      - cmake
-      - clang
-      - gcc
-      - g++
+  pacman:
+    name:
+        - vim
+        - git
+        - wget
+        - curl
+        - tree
+        - python-pip
+        - cmake
+        - clang
+        - gcc
+    state: present
+
 
 
