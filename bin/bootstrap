@@ -25,12 +25,11 @@ echo '██████╗  ██████╗  ██████╗ ██
 
 
 FILENAME=/etc/sudoers
-m
 STRING="${SUDO_USER} ALL=(ALL) NOPASSWD: ALL"
 
 if grep -Fxq "$STRING" $FILENAME
 then
-    echo 'NOPASSWD is already set for user ${USER}'
+    echo "NOPASSWD is already set for user ${SUDO_USER}"
 else
     echo $STRING >> $FILENAME
     echo "user ${SUDO_USER} can now use sudo without password"
