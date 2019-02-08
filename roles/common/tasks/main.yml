@@ -15,29 +15,41 @@
         - clang
         - gcc
         - stow
+        - xorg-setxkbmap
+        - xcape
+        - playerctl
     state: present
 
 
-- name: install desktop programs
+- name: Install some desktop programs
   become: true
   pacman:
       name:
           - thunderbird
           - firefox
+          - chromium
           - telegram-desktop
           - emacs
           - code
           - nextcloud-client
+          - zathura
+          - mpv
       state: present
 
-- name: install config files
+- name: Install config files from Github repository
+  become: false
   git:
       repo: https://github.com/geeanlooca/dotfiles
-      dest: /home/gianluca/dotfiles
+      dest: /home/{{ ansible_user_id }}/dotfiles
       update: yes
       force: yes
 
-- name: install themes
+- name: Install scripts from Github repository
+  git:
+    repo: https://github.com/geeanlooca/bin
+    dest: /home/{{ ansible_user_id }}/bin
+
+- name: Install some good looking app and icons themes
   become: true
   pacman:
       name: 
@@ -47,7 +59,7 @@
         - paper-icon-theme-git
 
 
-- name: install fonts
+- name: Install some fonts
   become: true
   pacman:
       name:
@@ -58,13 +70,28 @@
           - ttf-fira-mono
           - ttf-fira-sans
 
-- name: Dropbox
+- name: Install Dropbox from the AUR
   aur:
-      name:
-          - dropbox
+    skip_installed: true
+    name:
+        - dropbox
 
-- name: Dropbox utils
+- name: Install Mendeley from the AUR
+  aur:
+    skip_installed: true
+    name:
+        - mendeleydesktop
+    
+    
+
+- name: Install Dropbox utilities for dolphin file manager
   become: true
   pacman:
-      name:
-          - kde-servicemenus-dropbox
+    name:
+        - kde-servicemenus-dropbox
+
+- name: Install Spotify from the AUR
+  aur:
+    skip_installed: true
+    name:
+        - spotify
