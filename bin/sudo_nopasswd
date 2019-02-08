@@ -1,12 +1,15 @@
-echo "You are running this script as user ${USER}"
+if [ -z "$SUDO_USER" ]; then
+    echo "Please run this script as sudo"
+    exit 1
+fi
 
 FILENAME=/etc/sudoers
-STRING="${USER} ALL=(ALL) NOPASSWD: ALL"
+STRING="${SUDO_USER} ALL=(ALL) NOPASSWD: ALL"
 
-if sudo grep -Fxq "$STRING" $FILENAME
+if grep -Fxq "$STRING" $FILENAME
 then
     echo 'NOPASSWD is already set for user ${USER}'
 else
-    sudo echo $STRING >> $FILENAME
-    echo 'user ${USER} can now use sudo without password'
+    echo $STRING >> $FILENAME
+    echo "user ${USER} can now use sudo without password"
 fi

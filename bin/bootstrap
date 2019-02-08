@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# check if script is run as sudo
+if [ -z "$SUDO_USER" ]; then
+    echo "Please run this script as sudo"
+    exit 1
+fi
+
+
 echo ' ██████╗ ███████╗███████╗ █████╗ ███╗   ██╗██╗      ██████╗  ██████╗  ██████╗ █████╗ ███████╗
 ██╔════╝ ██╔════╝██╔════╝██╔══██╗████╗  ██║██║     ██╔═══██╗██╔═══██╗██╔════╝██╔══██╗██╔════╝
 ██║  ███╗█████╗  █████╗  ███████║██╔██╗ ██║██║     ██║   ██║██║   ██║██║     ███████║███████╗
@@ -17,17 +24,27 @@ echo '██████╗  ██████╗  ██████╗ ██
                                                                    '
 
 
+FILENAME=/etc/sudoers
+STRING="${SUDO_USER} ALL=(ALL) NOPASSWD: ALL"
+
+if grep -Fxq "$STRING" $FILENAME
+then
+    echo 'NOPASSWD is already set for user ${USER}'
+else
+    echo $STRING >> $FILENAME
+    echo "user ${USER} can now use sudo without password"
+fi
+
 echo 'Updating the package list and upgrading the system...'
-sudo pacman -Syu --noconfirm
+pacman -Syu --noconfirm
 
 echo 'Installing make and ansible...'
-sudo pacman -S make ansible --noconfirm
+pacman -S make ansible --noconfirm
 
 echo 'Installing AUR module for ansible'
 
-TARGET="~/.ansible/plugins/modules/aur"
+TARGET="/home/${SUDO_USER}/.ansible/plugins/modules/aur"
 if [ ! -d "$TARGET" ] ; then
     git clone https://github.com/kewlfft/ansible-aur.git $TARGET
 fi
 
-echo $USER
