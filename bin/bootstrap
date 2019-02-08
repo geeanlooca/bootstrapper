@@ -44,7 +44,7 @@ pacman -S make ansible --noconfirm
 
 TARGET="/home/${SUDO_USER}/.ansible/plugins/modules/aur"
 if [ ! -d "$TARGET" ] ; then
-    echo 'Installing AUR module for ansible in ${TARGET}'
-    git clone https://github.com/kewlfft/ansible-aur.git $TARGET
+    echo "Installing AUR module for ansible in ${TARGET}"
+    sudo -u $SUDO_USER git clone https://github.com/kewlfft/ansible-aur.git $TARGET
 fi
 
