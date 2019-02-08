@@ -25,6 +25,7 @@ echo '██████╗  ██████╗  ██████╗ ██
 
 
 FILENAME=/etc/sudoers
+m
 STRING="${SUDO_USER} ALL=(ALL) NOPASSWD: ALL"
 
 if grep -Fxq "$STRING" $FILENAME
@@ -32,7 +33,7 @@ then
     echo 'NOPASSWD is already set for user ${USER}'
 else
     echo $STRING >> $FILENAME
-    echo "user ${USER} can now use sudo without password"
+    echo "user ${SUDO_USER} can now use sudo without password"
 fi
 
 echo 'Updating the package list and upgrading the system...'
@@ -41,10 +42,10 @@ pacman -Syu --noconfirm
 echo 'Installing make and ansible...'
 pacman -S make ansible --noconfirm
 
-echo 'Installing AUR module for ansible'
 
 TARGET="/home/${SUDO_USER}/.ansible/plugins/modules/aur"
 if [ ! -d "$TARGET" ] ; then
+    echo 'Installing AUR module for ansible in ${TARGET}'
     git clone https://github.com/kewlfft/ansible-aur.git $TARGET
 fi
 
