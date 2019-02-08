@@ -1,3 +1,8 @@
 #!/bin/bash
 
 qdbus org.kde.KWin /Effects org.kde.kwin.Effects.unloadEffect kwin4_effect_translucency
+
+qdbus org.kde.KWin /Effects org.kde.kwin.Effects.unloadEffect kwin4_effect_maximize
+
+qdbus org.kde.KWin /Effects org.kde.kwin.Effects.unloadEffect kwin4_effect_fade
+
