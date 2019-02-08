@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo 'Updating the package list and upgrading the system...'
-sudo pacman -Syu -y
+sudo pacman -Syu --noconfirm
 
 echo 'Installing make and ansible...'
-sudo pacman -S make ansible -y
+sudo pacman -S make ansible --noconfirm
