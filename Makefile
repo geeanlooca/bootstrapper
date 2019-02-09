@@ -6,7 +6,7 @@ install:
 desktop:
 	ansible-playbook -i '127.0.0.1.' desktop.yml
 
-desktop:
+laptop:
 	ansible-playbook -i '127.0.0.1.' laptop.yml
 
 prepare:

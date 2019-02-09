@@ -17,9 +17,23 @@
         - stow
         - xorg-setxkbmap
         - xcape
-        - playerctl
+        - xclip
+        - xsel
     state: present
 
+- name: Install some useful command line utilities
+  become: true
+  pacman:
+    name:
+        - rofi
+        - playerctl
+        - glances
+        - htop
+        - nethogs
+        - surfraw
+        - ranger
+        - scrot
+        - imagemagick
 
 - name: Install some desktop programs
   become: true
@@ -34,6 +48,11 @@
           - nextcloud-client
           - zathura
           - mpv
+          - rofi
+          - redshift
+          - plasma5-applets-redshift-control
+          - octave
+          
       state: present
 
 - name: Install config files from Github repository
@@ -93,3 +112,14 @@
     skip_installed: true
     name:
         - spotify
+
+- name: Install Bitwarden from the AUR
+  aur:
+    skip_installed: true
+    name:
+        - bitwarden-bin
+
+
+- import_tasks: pacman.yml
+  tags:
+    - pkg

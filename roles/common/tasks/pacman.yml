@@ -1,0 +1,17 @@
+---
+
+- name: Copy pacman.conf to user home directory
+  become: true
+  copy: 
+    src: /etc/pacman.conf
+    dest: /home/{{ ansible_user_id }}/pacman.conf
+    owner: {{ ansible_user_id }}
+
+
+- name: Test some string renaming capabilities
+  replace:
+    path: /home/{{ ansible_user_id }}/pacman.conf
+    regexp: '#Color$'
+    replace: 'Color'
+    backup: yes
+
