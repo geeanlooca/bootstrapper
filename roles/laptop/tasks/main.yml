@@ -1,0 +1,95 @@
+---
+
+- name: install base packages
+  become: true
+  pacman:
+    name:
+        - yay
+        - vim
+        - git
+        - wget
+        - curl
+        - tree
+        - python-pip
+        - cmake
+        - clang
+        - gcc
+        - stow
+        - xorg-setxkbmap
+        - xcape
+        - playerctl
+    state: present
+
+
+- name: Install some desktop programs
+  become: true
+  pacman:
+      name:
+          - thunderbird
+          - firefox
+          - chromium
+          - telegram-desktop
+          - emacs
+          - code
+          - nextcloud-client
+          - zathura
+          - mpv
+      state: present
+
+- name: Install config files from Github repository
+  become: false
+  git:
+      repo: https://github.com/geeanlooca/dotfiles
+      dest: /home/{{ ansible_user_id }}/dotfiles
+      update: yes
+      force: yes
+
+- name: Install scripts from Github repository
+  git:
+    repo: https://github.com/geeanlooca/bin
+    dest: /home/{{ ansible_user_id }}/bin
+
+- name: Install some good looking app and icons themes
+  become: true
+  pacman:
+      name: 
+        - numix-gtk-theme
+        - papirus-icon-theme
+        - adapta-kde
+        - paper-icon-theme-git
+
+
+- name: Install some fonts
+  become: true
+  pacman:
+      name:
+          - otf-fira-code
+          - otf-fira-mono
+          - otf-fira-sans
+          - ttf-fira-code
+          - ttf-fira-mono
+          - ttf-fira-sans
+
+- name: Install Dropbox from the AUR
+  aur:
+    skip_installed: true
+    name:
+        - dropbox
+
+- name: Install Mendeley from the AUR
+  aur:
+    skip_installed: true
+    name:
+        - mendeleydesktop
+    
+- name: Install Dropbox utilities for dolphin file manager
+  become: true
+  pacman:
+    name:
+        - kde-servicemenus-dropbox
+
+- name: Install Spotify from the AUR
+  aur:
+    skip_installed: true
+    name:
+        - spotify

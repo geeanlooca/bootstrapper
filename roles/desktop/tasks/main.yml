@@ -1,0 +1,7 @@
+---
+
+- name: Install Plex Media Server
+  aur:
+    skip_installed: true
+    name:
+        - spotify
