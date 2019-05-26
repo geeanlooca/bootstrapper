@@ -1,0 +1,5 @@
+- name: Install configuration file to make the Keyboard and Favourite keys in latest ThinkPad laptops mapped to XF86Launch2 and XF86Launch1
+  copy:
+      src: 90-thinkpad-keyboard.hwdb
+      dest: /etc/udev/hwdb.d/90-thinkpad-keyboard.hwdb
+  notify: apply keyboard settings

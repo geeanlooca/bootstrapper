@@ -99,7 +99,7 @@
   aur:
     skip_installed: true
     name:
-        - mendeleydesktop
+        - mendeleydesktop-bundled
     
 - name: Install Dropbox utilities for dolphin file manager
   become: true
