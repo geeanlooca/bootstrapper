@@ -1,0 +1,21 @@
+---
+
+- name: decrease systemd timeouts
+  become: true
+  block:
+  - name: DefaultTimeoutStartSec
+    lineinfile:
+      path: /etc/systemd/system.conf
+      regexp: '^ *#* *DefaultTimeoutStartSec'
+      line: 'DefaultTimeoutStartSec=90s'
+
+  - name: DefaultTimeoutStopSec
+    lineinfile:
+      path: /etc/systemd/system.conf
+      regexp: '^ *#* *DefaultTimeoutStopSec'
+      line: 'DefaultTimeoutStopSec=90s'
+
+  - name: reload systemd
+    become: yes
+    systemd:
+      daemon_reload: yes

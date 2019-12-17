@@ -1,0 +1,8 @@
+---
+
+- name: Install webcam software
+  become: true
+  pacman:
+      name: kamoso
+      state: present
+

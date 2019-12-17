@@ -1,0 +1,13 @@
+---
+
+- name: Install KDE apps
+  become: true
+  pacman: 
+    name:
+      - redshift
+      - plasma5-applets-redshift-control
+      - filelight
+      - skanlite
+      - adapta-kde
+      - kvantum-qt5
+      - kvantum-adapta

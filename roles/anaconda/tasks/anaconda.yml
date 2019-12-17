@@ -1,0 +1,26 @@
+---
+
+- name: Install Miniconda
+  block:
+  - name: check if it is already installed before redownloading
+    stat: 
+      path: /home/{{ ansible_user_id }}/.miniconda3
+    register: anaconda_details
+
+  - name: download the installer
+    get_url:
+        url: https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        dest: /home/{{ ansible_user_id }}/miniconda.sh
+        mode: 'u+x'
+    when: not anaconda_details.stat.exists
+    register: installer_details
+
+  - name: run the installer
+    shell: bash /home/{{ ansible_user_id }}/miniconda.sh -b -p /home/{{ ansible_user_id }}/.miniconda3
+    when: installer_details.changed
+    register:  installation_details
+
+  - name: remove the installer
+    file:
+      state: absent
+      path: /home/{{ ansible_user_id }}/miniconda.sh

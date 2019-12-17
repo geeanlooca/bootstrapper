@@ -1,3 +1,4 @@
 ---
 
 - include: thinkpad-keyboard.yml
+- include: programs.yml

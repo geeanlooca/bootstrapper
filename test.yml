@@ -50,7 +50,6 @@
         force: yes
       tags: vim
 
-
     - name: Retrieve dotfiles
       git:
         repo: 'https://github.com/geeanlooca/dotfiles'

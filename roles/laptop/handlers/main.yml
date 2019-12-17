@@ -2,8 +2,10 @@
 
 - name: apply keyboard settings
   shell: udevadm hwdb --update
+  become: true
   notify: apply keyboard settings step 2 
 
 - name: apply keyboard settings step 2
   shell: udevadm trigger --sysname-match="event*"
+  become: true
   

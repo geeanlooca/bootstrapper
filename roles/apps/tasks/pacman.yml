@@ -4,7 +4,6 @@
   become: true
   replace:
     path: /etc/pacman.conf
-    regexp: '#Color$'
+    regexp: '^ *# *Color *'
     replace: 'Color'
     backup: yes
-

@@ -1,0 +1,1 @@
+ATTRS{idVendor}=="413c", ATTRS{idProduct}=="2003", RUN+="/home/gianluca/bin/kb-layout us"

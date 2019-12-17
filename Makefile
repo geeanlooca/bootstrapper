@@ -1,13 +1,14 @@
 .PHONY: ${TARGETS}
 
+prepare:
+	sudo bash ./bin/bootstrap
+
 install:
-	ansible-playbook -i '127.0.0.1.' main.yml
+	ansible-playbook -i ./hosts main.yml 
 
 desktop:
-	ansible-playbook -i '127.0.0.1.' desktop.yml
+	ansible-playbook -i ./hosts desktop.yml
 
 laptop:
-	ansible-playbook -i localhost, laptop.yml
+	ansible-playbook -i ./hosts laptop.yml
 
-prepare:
-	bash ./bin/bootstrap

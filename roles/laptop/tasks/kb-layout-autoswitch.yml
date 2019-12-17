@@ -1,0 +1,5 @@
+- name: Install udev rule for automatically switching keyboard layout
+  copy:
+      src: 90-thinkpad-keyboard.hwdb
+      dest: /etc/udev/hwdb.d/90-thinkpad-keyboard.hwdb
+  notify: apply keyboard settings

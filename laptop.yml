@@ -1,10 +1,10 @@
 ---
 
 - name: Setup laptop-specific configuration files and programs
-  hosts: 127.0.0.1
+  hosts: local
   connection: local
   become: yes
   vars_files:
       - ./var/globals.yml
   roles:
-      - laptop
+      - kde
